@@ -115,7 +115,7 @@ export default function Home() {
       ],
     },
     {
-      name: 'DELETE /expense',
+      name: 'DELETE /expense/:id',
       description: 'Delete an expense',
       parameters: [
         {

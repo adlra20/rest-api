@@ -1,34 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+// README.md
+# Travel expenses API
 
-## Getting Started
+### Introduction
+Travel expenses API is an open source platform that enable users take control over the expenses when doing a trip.
 
-First, run the development server:
+### Project Support Features
+* Public (non-authenticated) users can access all trips and expenses view them, create new ones, edit and delete trips and expenses.
 
-```bash
-npm run dev
-# or
-yarn dev
+### Installation Guide
+* Clone this repository [here](https://github.com/adlra20/rest-api.git).
+* Run npm install to install all dependencies
+* Run run dev and open the [app](http://localhost:3000) in your local to see the documentation of the API
+* Install Prisma with 
+
+```javascript
+npm install -D prisma
+```
+* Now run this to setup Prisma:
+
+```javascript
+npx prisma init
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* This will create a prisma folder, and inside it, a schema.prisma file:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```javascript
+// This is your Prisma schema file,
+// learn more about it in the docs: <https://pris.ly/d/prisma-schema>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+generator client {
+  provider = "prisma-client-js"
+}
+```
 
-## Learn More
+* This also created a .env file, After create your account in [Railway](https://railway.app/),
+make sure to add the following line replacing the content for your URL (find it in the Connect tab once you have created the database).
 
-To learn more about Next.js, take a look at the following resources:
+```javascript
+DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public" 
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* (Optional) I suggest to create some dummy data in order to check that everything works.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Usage
+* Connect to the API using Postman or Insomnia on port 3000.
 
-## Deploy on Vercel
+### API Endpoints
+More details in the [API](http://localhost:3000/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| HTTP Verbs | Endpoints | Action |
+| --- | --- | --- |
+| GET | /trips | List all the trips |
+| POST | /trips | Create a new trip |
+| GET | /trips/:id | Get the details of a trip, including expenses |
+| PUT | /trips/:id | Edit a trip |
+| DELETE | /trips/:id | Delete a trip |
+| POST | /expenses | Create a new expense |
+| GET | /expenses/:id | Get the details of an expense |
+| PUT | /expenses/:id | Edit an expense |
+| DELETE | /expenses/:id | Delete an expense |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Technologies Used
+* [NodeJS](https://nodejs.org/) This is a cross-platform runtime environment built on Chrome's V8 JavaScript engine used in running JavaScript codes on the server. It allows for installation and managing of dependencies and communication with databases.
+* [React](https://reactjs.org/) This is a popular JavaScript framework.
+* [Next.js](https://nextjs.org/) A react framework for production.
+* [Prisma](https://www.prisma.io/) ORM to build JavaScript and TypeScript apps in less time.
+* [Railway](https://railway.app/) Made for any language, for projects big and small. Railway is the cloud that takes the complexity out of shipping software.
+
+### Authors
+
+ [Adlra20](https://github.com/adlra20)
+ ![alt text](https://avatars.githubusercontent.com/u/69932838?v=4)
+
+### License
+
+This project is available for use under the MIT License.
