@@ -17,3 +17,12 @@ model Trip {
   start_date DateTime   @default(now())
   end_date   DateTime?
 }
+
+model Expense {
+   id         Int       @id @default(autoincrement())
+   trip       Int
+   name       String
+   date       DateTime  @default(now())
+   amount     Int
+   currency   String
+}
